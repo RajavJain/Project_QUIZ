@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import LoadingBar from 'react-top-loading-bar'
+// import ProgressBar from 'react-bootstrap/ProgressBar';
 
 
 const questions = [
@@ -88,6 +89,11 @@ function App() {
         height= "2px"
         progress={progress}
         onLoaderFinished={() => setProgress(0)}/>
+
+
+
+
+        
 
         
 
