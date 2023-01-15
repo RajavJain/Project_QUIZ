@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./App.css";
+import LoadingBar from 'react-top-loading-bar'
+
 
 const questions = [
   {
@@ -46,9 +48,18 @@ function App() {
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
+  const [progress, setProgress] = useState(0);
+  const [color, setColor] = useState('black');
+
   function handleAnswer(isCorrect) {
     if (isCorrect) {
       setScore(score + 1);
+      setProgress(progress +25);
+      setColor('#12AD2B');
+    }
+    else{
+      setProgress(progress+25);
+      setColor('red');
     }
 
     const nextQuestion = currentQuestion + 1;
@@ -60,13 +71,26 @@ function App() {
   }
 
   return (
+      
+
     <div className="app">
       {showScore ? (
         <div className="score-section">
           Você pontuou {score} de {questions.length}
         </div>
       ) : (
+
         <>
+        
+
+        <LoadingBar
+        color={color}
+        height= "2px"
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}/>
+
+        
+
           <div className="question-section">
             <div className="question-count">
               <span>Questão {currentQuestion + 1}</span>/{questions.length}
